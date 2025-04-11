@@ -61,7 +61,7 @@ pictures = []
 end
 
 user = User.create!({
-  email: 'andrew@gmail.com',
+  email: 'andrew2@gmail.com',
   password: '123456'
 })
 
@@ -74,14 +74,12 @@ user.profile.update!({
   country_code: Faker::Address.country_code
 })
 
-user.rewind
-
 user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
 
 9.times do |i|
   random_user = User.create!(
     {
-      email: "memmanew#{i + 2}@gmail.com",
+      email: "andrewema#{i + 2}@gmail.com",
       password: '123456'
     }
   )
@@ -97,8 +95,6 @@ user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
       country_code: Faker::Address.country_code
     }
   )
-
-  random_user.rewind
 
   random_user.profile.picture.attach(io: pictures[i + 1], filename: random_user.profile.name)
 end

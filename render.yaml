@@ -38,7 +38,7 @@ services:
         fromDatabase:
           name: mysite-db
           property: connectionString
-      - key: 7eb5effb083cdc83552c7a5653007d88
+      - key: RAILS_MASTER_KEY
         sync: false # You'll provide this value on Blueprint creation
       - key: WEB_CONCURRENCY
         value: 2 # Recommended default

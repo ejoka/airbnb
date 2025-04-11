@@ -305,7 +305,7 @@ DEPENDENCIES
   bootsnap
   country_select (~> 8.0)
   debug
-  devise (~> 4.9, >= 4.9.3)
+  devise (~> 4.9)
   dotenv
   faker
   image_processing (>= 1.2)

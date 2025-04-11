@@ -1,3 +1,5 @@
+require 'open-uri'
+
 description = <<-DESCRIPTION
 <div>Explore the nature and art oasis at our unique property. The living room, a cozy masterpiece, and the fully equipped kitchen are ideal for cooking and entertaining. Step outside to our garden patio, unwind, and enjoy morning birdsong. Tastefully decorated bedrooms, a powder room, and utility area complete the experience.<br />Note: The property is surrounded by a residential area. Despite initial surroundings, I am sure that, stepping in will fill your mood with joy and happiness.
 </div>
@@ -59,7 +61,7 @@ pictures = []
 end
 
 user = User.create!({
-  email: 'test1@gmail.com',
+  email: 'andrew@gmail.com',
   password: '123456'
 })
 
@@ -72,15 +74,18 @@ user.profile.update!({
   country_code: Faker::Address.country_code
 })
 
+user.rewind
+
 user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
 
 9.times do |i|
   random_user = User.create!(
     {
-      email: "test#{i + 2}@gmail.com",
+      email: "memmanew#{i + 2}@gmail.com",
       password: '123456'
     }
   )
+
 
   random_user.profile.update!(
     {
@@ -92,6 +97,8 @@ user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
       country_code: Faker::Address.country_code
     }
   )
+
+  random_user.rewind
 
   random_user.profile.picture.attach(io: pictures[i + 1], filename: random_user.profile.name)
 end
@@ -108,7 +115,7 @@ end
     country_code: Faker::Address.country_code,
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude,
-    price: Money.from_amount((50..100).to_a.sample, 'USD'),
+    price: Money.from_amount((50..100).to_a.sample, 'GBP'),
     bedroom_count: (2..5).to_a.sample,
     bed_count: (4..10).to_a.sample,
     guest_count: (4..20).to_a.sample,
@@ -116,13 +123,13 @@ end
     user_id: User.all.sample.id
   })
 
-  property.images.attach(io: File.open("db/images/property_#{i + 1}.png"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_7.png"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_8.png"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_9.png"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_10.png"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_11.png"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_12.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_#{i + 1}.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_7.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_8.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_9.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_10.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_11.png"), filename: property.name)
+  property.images.attach(io: File.read("db/images/property_12.png"), filename: property.name)
 
   amenity_set = Set.new
   ((10..(amenities_data.length() - 1)).to_a.sample).times do

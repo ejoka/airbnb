@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[8.0].define(version: 2024_04_02_134059) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -61,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.bigint "reservation_id", null: false
+    t.integer "reservation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "base_fare_cents"
@@ -82,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
     t.string "city"
     t.string "state"
     t.string "country_code"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -107,15 +104,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
     t.integer "bedroom_count", default: 0
     t.integer "bed_count", default: 0
     t.integer "bathroom_count", default: 0
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.decimal "latitude", default: "0.0"
     t.decimal "longitude", default: "0.0"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "property_amenities", force: :cascade do |t|
-    t.bigint "property_id", null: false
-    t.bigint "amenity_id", null: false
+    t.integer "property_id", null: false
+    t.integer "amenity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["amenity_id", "property_id"], name: "index_property_amenities_on_amenity_id_and_property_id", unique: true
@@ -124,8 +121,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "property_id", null: false
+    t.integer "user_id", null: false
+    t.integer "property_id", null: false
     t.date "checkin_date"
     t.date "checkout_date"
     t.datetime "created_at", null: false
@@ -144,11 +141,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
     t.integer "location_rating"
     t.integer "value_rating"
     t.decimal "final_rating"
-    t.bigint "user_id", null: false
-    t.bigint "property_id", null: false
+    t.integer "user_id", null: false
+    t.integer "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "reservation_id", null: false
+    t.integer "reservation_id", null: false
     t.index ["property_id"], name: "index_reviews_on_property_id"
     t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
     t.index ["user_id", "property_id", "reservation_id"], name: "index_reviews_on_user_id_and_property_id_and_reservation_id", unique: true
@@ -168,8 +165,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_134059) do
   end
 
   create_table "wishlists", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "property_id", null: false
+    t.integer "user_id", null: false
+    t.integer "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_wishlists_on_property_id"

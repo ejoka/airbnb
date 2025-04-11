@@ -5,7 +5,7 @@ ruby "3.3.6"
 
 gem "bootsnap", require: false
 gem 'country_select', '~> 8.0'
-gem 'devise', '~> 4.9', '>= 4.9.3'
+gem "devise", "~> 4.9"
 gem 'faker'
 gem "image_processing", ">= 1.2"
 gem "importmap-rails"
